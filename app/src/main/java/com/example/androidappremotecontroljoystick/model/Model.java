@@ -36,7 +36,7 @@ public class Model {
                 exception.printStackTrace();
             }
         }).start();
-        //jdjd
+
     }
 
     public void sendData(String attribute, float value) {
