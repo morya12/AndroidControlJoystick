@@ -24,6 +24,8 @@ public class ViewModel extends androidx.lifecycle.ViewModel {
 
     public void VM_setAileron(float aileron) {
         m.setAileron(aileron);
+     //   Log.d("Main Method", "X percent: ");
+
     }
     public void VM_setElevator(float elevator  ) {
         m.setElevator(elevator);

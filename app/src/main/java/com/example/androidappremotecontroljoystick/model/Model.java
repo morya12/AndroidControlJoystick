@@ -49,21 +49,7 @@ public class Model {
         executor.submit(runnable);
     }
 
-    public void sendData2() {
-        if(fg == null)
-            Log.d("myTag", "fg null");
-        if(out == null) {
-            Log.d("myTag", "out null");
-        }
-        if (out != null) {
-            double j = 0.22;
-            for (int i = 0; i < 100; i++) {
-                out.print("set /controls/flight/alieron" + j + "\r\n");
-                out.flush();
-                j += 0.01;
-            }
-        }
-    }
+
 
     public void setThrottle(float throttle) {
         sendData("engines/current-engine/throttle ", throttle);
@@ -82,11 +68,5 @@ public class Model {
     }
 
 
-//    public void writeToServer(String s) {
-//        try {
-//            this.dispatchQueue.put(s);
-//        } catch (Exception e) {
-//            Log.e("TCP", "S: Error", e);
-//        }
-//    }
+
 }

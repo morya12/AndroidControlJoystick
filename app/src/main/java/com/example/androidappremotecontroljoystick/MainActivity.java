@@ -13,32 +13,41 @@ import android.widget.SeekBar;
 import android.widget.Toast;
 
 import com.example.androidappremotecontroljoystick.model.Model;
+import com.example.androidappremotecontroljoystick.view.Joystick;
 import com.example.androidappremotecontroljoystick.viewmodel.ViewModel;
-import com.example.androidappremotecontroljoystick.databinding.ActivityMainBinding;
+//import com.example.androidappremotecontroljoystick.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity implements Joystick.JoystickListener {
+    //fixed field
     private EditText  eIP;
     private EditText ePort;
     private Button eConnect;
     SeekBar rudder;
+    ViewModel  vm;
+    //Joystick joystick;
     private String asafIP = "10.0.0.16";
     private String morIP = "192.168.1.35";
+ // to do view
+    // disconnect
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // setContentView(R.layout.activity_main);
+        this.vm = new ViewModel(new Model());
 
-        ActivityMainBinding activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-
+        setContentView(R.layout.activity_main);
+     //   ActivityMainBinding activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         //  ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        ViewModel  vm = new ViewModel(new Model());
+        Joystick joystick = (Joystick)findViewById(R.id.joystick);
 
         eIP = findViewById(R.id.etIP);
         ePort = findViewById(R.id.etPort);
         eConnect = findViewById(R.id.btnConnect);
         rudder = findViewById(R.id.rudder);
+
+
+
+
         eConnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,8 +56,9 @@ public class MainActivity extends AppCompatActivity {
                 if (IP.isEmpty() || port.isEmpty()){
                     Toast.makeText(MainActivity.this, "please enter valid IP and Port", Toast.LENGTH_SHORT).show();
                 } else {
-                    vm.connect(morIP, Integer.parseInt(port));
+                    vm.connect(asafIP, Integer.parseInt(port));
                     eConnect.setBackgroundColor(Color.GRAY);
+                    eConnect.setText("Connected");
                     eConnect.setClickable(false);
                 }
             }
@@ -72,5 +82,41 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+        // create the throttle seekbar
+        SeekBar throttle = (SeekBar)findViewById(R.id.throttle);
+        throttle.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                float throttleVal = (float) progress / 100;
+                vm.VM_setThrottle(throttleVal);
+                Log.d(null, "throttleVal: " + throttleVal);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+
+
     }
+    @Override
+    public void onJoystickMoved(float x, float y) {
+        Log.d("Main Method", "X percent: " + x + " Y percent: " + y);
+       // float elevator = (float) ((float) (x - 0.5) * -0.2);
+      //  float aileron = (float) ((float) (y - 0.5) * 0.2);
+        //Log.d(null, "elevator: " + elevator);
+       // Log.d(null, "aileron: " + aileron);
+        if(vm != null) {
+            this.vm.VM_setElevator(x);
+            this.vm.VM_setAileron(y);
+        }
+    }
+
 }
