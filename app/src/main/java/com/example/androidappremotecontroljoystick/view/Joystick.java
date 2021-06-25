@@ -18,16 +18,20 @@ import androidx.annotation.Nullable;
 
 import java.util.function.BiConsumer;
 
-// maybe implemnt surface view
 public class Joystick extends SurfaceView implements SurfaceHolder.Callback , View.OnTouchListener {
-    float centerX;
-    float centerY;
-    float baseRadius;
-    float hatRadius;
+    private float centerX;
+    private float centerY;
+    private float baseRadius;
+    private float hatRadius;
     private final int ratio = 5;
     private JoystickListener listener;
 
-
+    public void setupDimensions(){
+        centerX = getWidth() / 2;
+        centerY = getHeight() / 2;
+        baseRadius = Math.min(getWidth(), getHeight()) / 3;
+        hatRadius = Math.min(getWidth(), getHeight()) / 5;
+    }
     public Joystick(Context context) {
         super(context);
         getHolder().addCallback(this);
@@ -37,12 +41,6 @@ public class Joystick extends SurfaceView implements SurfaceHolder.Callback , Vi
 
     }
 
-    void setupDimensions(){
-        centerX = getWidth() / 2;
-        centerY = getHeight() / 2;
-        baseRadius = Math.min(getWidth(), getHeight()) / 3;
-        hatRadius = Math.min(getWidth(), getHeight()) / 5;
-    }
     public Joystick(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         getHolder().addCallback(this);

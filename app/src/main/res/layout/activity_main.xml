@@ -32,11 +32,12 @@
         android:layout_marginBottom="28dp"
         android:ems="10"
         android:hint="Enter Port:"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:textColor="#FFFFFF"
         android:textColorHint="#F6F6F6"
         app:layout_constraintBottom_toTopOf="@+id/btnConnect"
         app:layout_constraintEnd_toEndOf="parent"
+
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -90,7 +91,6 @@
         android:progress="50"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnConnect">
-
     </SeekBar>
 
     <com.example.androidappremotecontroljoystick.view.Joystick

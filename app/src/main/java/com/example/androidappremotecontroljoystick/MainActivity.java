@@ -18,16 +18,13 @@ import com.example.androidappremotecontroljoystick.viewmodel.ViewModel;
 //import com.example.androidappremotecontroljoystick.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity implements Joystick.JoystickListener {
-    //fixed field
     private EditText  eIP;
     private EditText ePort;
     private Button eConnect;
     SeekBar rudder;
     ViewModel  vm;
-    //Joystick joystick;
     private String asafIP = "10.0.0.16";
     private String morIP = "192.168.1.35";
- // to do view
     // disconnect
 
     @Override

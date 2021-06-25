@@ -12,12 +12,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class Model {
-    Socket fg;
-    PrintWriter out;
-    //  BlockingQueue<Runnable> dispatchQueue = new LinkedBlockingQueue<>();
-    // Executor executor = Executors.newSingleThreadExecutor();
-    ExecutorService executor  = Executors.newSingleThreadExecutor();
-    //  boolean stop = false;
+   private Socket fg;
+   private PrintWriter out;
+   private ExecutorService executor  = Executors.newSingleThreadExecutor();
     // for disconnect https://www.javatpoint.com/java-executors-newsinglethreadexecutor-method
 
     public void connect(String ip, int port) {
