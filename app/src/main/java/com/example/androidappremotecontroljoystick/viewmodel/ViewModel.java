@@ -10,13 +10,9 @@ import com.example.androidappremotecontroljoystick.model.Model;
 public class ViewModel extends androidx.lifecycle.ViewModel {
     private Model m;
 
-
     public ViewModel(Model model){
         this.m = model;
     }
-
-
-
 
     public void VM_setThrottle(float throttle) {
         m.setThrottle(throttle);
@@ -24,9 +20,8 @@ public class ViewModel extends androidx.lifecycle.ViewModel {
 
     public void VM_setAileron(float aileron) {
         m.setAileron(aileron);
-     //   Log.d("Main Method", "X percent: ");
-
     }
+
     public void VM_setElevator(float elevator  ) {
         m.setElevator(elevator);
     }
@@ -37,7 +32,6 @@ public class ViewModel extends androidx.lifecycle.ViewModel {
 
     public void connect(String ip, int port){
         m.connect(ip, port);
-        //m.sendData2();
     }
 }
 
