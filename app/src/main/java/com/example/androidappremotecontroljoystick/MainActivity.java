@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity implements Joystick.Joystick
 
     private ViewModel  vm;
 
-    private String asafIP = "172.21.192.1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
